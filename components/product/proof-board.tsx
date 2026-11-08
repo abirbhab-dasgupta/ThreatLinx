@@ -1,0 +1,10 @@
+"use client";
+import {useState} from "react";
+import Link from "next/link";
+import {ArrowUpRight,Blocks,ShieldCheck} from "lucide-react";
+export type ProofItem={id:string;version:number;status:string;domain:string;txHash:string|null;publishedAt:string|null};
+export function ProofBoard({items}:{items:ProofItem[]}){
+  const [checking,setChecking]=useState<string|null>(null);const [results,setResults]=useState<Record<string,string>>({});
+  async function verify(id:string){setChecking(id);try{const r=await fetch(`/api/reports/${id}/verify`);const body=await r.json();if(!r.ok)throw Error(body.error||"Verification request failed");setResults(x=>({...x,[id]:body.verified?"Integrity matches the Base Sepolia commitment.":body.networkError?"Registry temporarily unreachable; verification incomplete.":"Commitment mismatch or incomplete evidence."}));}catch(error){setResults(x=>({...x,[id]:error instanceof Error?error.message:"Verification request failed"}))}finally{setChecking(null)}}
+  return <section className="tlx-v2-panel"><div className="tlx-v2-panel-head"><span>PUBLIC REPORT COMMITMENTS</span><Blocks size={18}/></div><div className="tlx-v2-explainer"><ShieldCheck size={21}/><p>Published digests prove a reviewed evidence record has not changed since registration. They do not prove that an accusation is true. Raw messages and personal data are never stored on-chain.</p></div>{items.length?items.map(x=><div key={x.id} className="tlx-proof-row"><div><span className="tlx-overline">REPORT / V{x.version} / BASE SEPOLIA</span><h3>{x.domain}</h3><small>{x.publishedAt?new Date(x.publishedAt).toLocaleDateString("en-GB"):"Pending"}</small>{results[x.id]&&<p role="status">{results[x.id]}</p>}</div><div className="tlx-proof-actions"><button type="button" disabled={checking===x.id} onClick={()=>verify(x.id)}>{checking===x.id?"CHECKING":"VERIFY DIGEST"}</button><Link href={`/proof/${x.id}`} target="_blank">INDEPENDENT VIEW <ArrowUpRight size={14}/></Link></div></div>):<div className="tlx-v2-empty">No reviewed evidence has been published on-chain yet. A moderator can register a report after technical evidence review.</div>}</section>;
+}

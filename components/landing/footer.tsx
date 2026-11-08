@@ -1,0 +1,6 @@
+                                                                      
+export function LandingFooter() {
+  return (
+    <footer className="footer"><div className="container"><div className="footer-content"><div><a href="#top" className="brand"><span className="brand-mark"></span><span className="brand-name">THREATLINX</span></a><p className="footer-intro">Threat intelligence for the links people actually encounter. Clear findings across phishing signals, TLS identity and web security.</p></div><div><div className="mini" style={{marginBottom: '20px'}}>PLATFORM / INDEX</div><div className="footer-link-grid"><a href="#capabilities">CAPABILITIES ↗</a><a href="#xray">SIGNAL MAP ↗</a><a href="#methodology">OUR PROCESS ↗</a><a href="#community">COMMUNITY ↗</a><a href="#investigate">INVESTIGATE ↗</a></div></div><div className="footer-small"><div className="mini">A NOTE ON TRUST</div><span style={{fontSize: '12px', lineHeight: '1.65', maxWidth: '300px'}}>No single check proves a website is safe. Our aim is to help people make better-informed decisions using transparent evidence.</span><span className="mini">EVIDENCE FIRST / NOVEMBER 2026</span></div></div><div className="footer-bottom"><span>© 2026 THREATLINX. EVIDENCE-LED SECURITY INTELLIGENCE.</span><span>QUESTION THE LINK. EXAMINE THE EVIDENCE.</span><a href="#top">BACK TO TOP ↑</a></div></div></footer>
+  );
+}
