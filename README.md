@@ -147,7 +147,7 @@ npm run build
 npm run contracts:test
 ```
 
-Run live checks of Better Auth, Neon, Inngest, Gemini, security providers, and the deployed contract with your own development credentials. **Source-code syntax checks do not replace these integration tests.** For safe demo scenarios and outstanding checks, see [`docs/TEST-AND-RELEASE.md`](docs/TEST-AND-RELEASE.md).
+Run live checks of Better Auth, Neon, Inngest, Gemini, security providers, and the deployed contract with your own development credentials. **Source-code syntax checks do not replace these integration tests.** 
 
 ## Disclosures (libraries, templates, AI tools)
 
